@@ -9,7 +9,10 @@ from contacts.models import Contact
 
 class Command(BaseCommand):
     def add_arguments(self, parser):
-        parser.add_argument('n', nargs='?', type=int, default=10, help='Number of contacts to generate')
+        parser.add_argument(
+            'n', nargs='?', type=int, default=10,
+            help='Number of contacts to generate'
+        )
 
     def handle(self, *args, **options):
         logging.info(f'Generating {options["n"]} contacts...')
