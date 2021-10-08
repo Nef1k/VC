@@ -25,8 +25,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'drf_yasg',
 
-    'users',
     'contacts',
+    'users',
     'api',
 ]
 
@@ -43,6 +43,8 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'VoxieContacts.urls'
 
 AUTH_USER_MODEL = 'users.User'
+
+NOTIFICATION_EMAIL = 'nef1k@outlook.com'
 
 LOGGING = {
     'version': 1,
@@ -111,6 +113,16 @@ DATABASES = {
         'PORT': os.environ.get('DB_PORT', 5432),
     }
 }
+
+
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ['EMAIL_HOST']
+EMAIL_HOST_USER = os.environ['EMAIL_USER']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASSWORD']
+EMAIL_PORT = os.environ['EMAIL_PORT']
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = os.environ['EMAIL_DEFAULT_FROM']
 
 
 # Password validation
