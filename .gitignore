@@ -1,0 +1,5 @@
+.idea/
+
+envs/*
+!envs/*.example.env
+
