@@ -24,7 +24,7 @@ run:
 	pipenv run ./manage.py runserver localhost:8000
 
 zip:
-	git archive --format zip --output $(pwd)/contacts.zip master
+	git archive --format zip --output $(shell pwd)/contacts.zip master
 
 init_no_deps: migrate seed_users seed_contacts test
 

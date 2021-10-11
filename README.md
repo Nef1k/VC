@@ -8,6 +8,7 @@
 ## Quickstart
 * Ensure that you have pipenv installed `pip install pipenv`
 * `cd` to project root folder
+* `cp envs/dev.example.env envs/dev.env` and review the env file.
 * Initialize app with `make init`
 * Run app with `make run`
 
@@ -26,6 +27,9 @@ role: superuser; username: example; password: 123
 * `regular` has read-only access to contacts
 * `admin` has read-add-update access to contacts
 * `superuser` has full access to contacts
+
+## Using GMail as an email provider
+Google won't let you use your password 
 
 ## Generating Sample Data
 `make seed_contacts` will provide you with some sample contacts to play with. 

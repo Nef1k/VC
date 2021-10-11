@@ -1,3 +1,6 @@
+import logging
+from smtplib import SMTPAuthenticationError
+
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
 
@@ -8,4 +11,7 @@ from contacts.models import Contact
 @receiver(post_delete, sender=Contact)
 def send_email(sender, instance, **kwargs):
     """Send email notification each time contact is deleted."""
-    send_contact_removal_email(instance)
+    try:
+        send_contact_removal_email(instance)
+    except SMTPAuthenticationError as e:
+        logging.error(f'Could not send an email: {str(e)}')
