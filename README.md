@@ -12,8 +12,8 @@
 * Initialize app with `make init`
 * Run app with `make run`
 
-* Check http://localhost:8000/ for the UI
-* Check http://localhost:8000/api/ for Swagger UI
+* Check [localhost:8000](http://localhost:8000/) for the UI
+* Check [localhost:8000/api/](http://localhost:8000/api/) for Swagger UI
 
 ## Users and Credentials
 For each role `make init` will create a user and output its credentials.
