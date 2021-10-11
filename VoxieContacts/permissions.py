@@ -1,3 +1,15 @@
+"""
+Contain set of custom permissions to use in API Views.
+
+GET, POST, PUT, PATCH and DELETE permissions allow to assign
+different permissions per single method in ApiView.
+
+Usage:
+    >>> class SomeView(APIView):
+    >>>     permission_classes = [GET & IsAuthenticated
+    >>>                           | POST & AllowAny]
+
+"""
 from rest_framework import permissions
 
 
@@ -27,6 +39,7 @@ class DELETE(permissions.BasePermission):
 
 
 def HasPerm(perm: str):
+    """Build permission class that checks if user has given permission."""
     class Perm(permissions.BasePermission):
         def has_permission(self, request, view):
             return request.user.has_perm(perm)

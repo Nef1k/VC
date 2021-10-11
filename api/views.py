@@ -9,6 +9,8 @@ from contacts.models import Contact
 
 
 class ContactsListView(generics.ListCreateAPIView):
+    """API to create and list instances of Contact."""
+
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
     permission_classes = [IsAuthenticated,
@@ -17,6 +19,8 @@ class ContactsListView(generics.ListCreateAPIView):
 
 
 class ContactsDetailsView(generics.RetrieveUpdateDestroyAPIView):
+    """API to retrieve, update and remove instances of Contact."""
+
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
     permission_classes = [IsAuthenticated,
@@ -25,6 +29,7 @@ class ContactsDetailsView(generics.RetrieveUpdateDestroyAPIView):
                           | (DELETE & HasPerm('contacts.delete_contact'))]
 
 
+# Swagger view.
 swagger_schema_view = get_schema_view(
     openapi.Info(
         title='Contacts API',

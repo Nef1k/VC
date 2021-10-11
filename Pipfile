@@ -4,17 +4,16 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "3.2.8"
-psycopg2 = "2.9.1"
-faker = "*"
-djangorestframework = "*"
-djangorestframework-simplejwt = "*"
-drf-yasg = "*"
+django = "==3.2.8"
+faker = "==9.2.0"
+djangorestframework = "==3.12.4"
+djangorestframework-simplejwt = "==4.8.0"
+drf-yasg = "1.20.0"
 pyjwt = "~=2.1.0"
-pylama = "*"
-django-crispy-forms = "*"
+django-crispy-forms = "==1.13.0"
 
 [dev-packages]
+pylama = "==7.7.1"
 
 [requires]
 python_version = "3.10"

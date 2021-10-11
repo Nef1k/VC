@@ -26,10 +26,10 @@ INSTALLED_APPS = [
     'drf_yasg',
     'crispy_forms',
 
-    'contacts',
-    'users',
-    'api',
-    'ui',
+    'users.apps.UsersConfig',
+    'contacts.apps.ContactsConfig',
+    'api.apps.ApiConfig',
+    'ui.apps.UiConfig',
 ]
 
 MIDDLEWARE = [
@@ -111,12 +111,12 @@ WSGI_APPLICATION = 'VoxieContacts.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['DB_NAME'],
-        'USER': os.environ['DB_USER'],
-        'PASSWORD': os.environ['DB_PASSWORD'],
-        'HOST': os.environ['DB_HOST'],
-        'PORT': os.environ.get('DB_PORT', 5432),
+        'ENGINE': os.environ.get('DB_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': os.environ.get('DB_NAME', BASE_DIR / 'db.sqlite'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
     }
 }
 

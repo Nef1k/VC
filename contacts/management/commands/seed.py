@@ -8,6 +8,14 @@ from contacts.models import Contact
 
 
 class Command(BaseCommand):
+    """
+    Create N users with randomly generated usernames, emails and passwords.
+
+    Args:
+        n(int): Number of contacts to generate. Default is 10.
+
+    """
+
     def add_arguments(self, parser):
         parser.add_argument(
             'n', nargs='?', type=int, default=10,

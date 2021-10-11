@@ -14,6 +14,7 @@ from ui.utils import reverse
 
 class IndexView(LoginRequiredMixin, View):
     def get(self, request):
+        """Render index page template."""
         contacts = get_contacts(request.user)
         return render(request, 'index.html', context={
             'contacts': contacts,
@@ -27,10 +28,12 @@ class AddContactView(LoginRequiredMixin, PermissionRequiredMixin, View):
     permission_required = 'contacts.add_contact'
 
     def get(self, request):
+        """Render template for adding new contact."""
         contact_form = ContactForm()
         return render(request, 'add_contact.html', context={'contact_form': contact_form})
 
     def post(self, request):
+        """Handle new contact data and perform contact creation."""
         contact_form = ContactForm(request.POST)
         if not contact_form.is_valid():
             return redirect(reverse(
@@ -50,6 +53,7 @@ class DeleteContactView(LoginRequiredMixin, PermissionRequiredMixin, View):
     permission_required = 'contacts.delete_contact'
 
     def post(self, request, pk):
+        """Delete contact and send an email notification."""
         if not Contact.objects.filter(pk=pk).exists():
             return redirect('index')
         delete_contact(request.user, contact_id=pk)
@@ -58,12 +62,14 @@ class DeleteContactView(LoginRequiredMixin, PermissionRequiredMixin, View):
 
 class LogoutView(LoginRequiredMixin, View):
     def get(self, request):
+        """Log out user."""
         logout(request)
         return redirect(reverse('sign-in'))
 
 
 class SignInView(View):
     def get(self, request):
+        """Render sign in page."""
         form = AuthenticationForm()
         error = request.GET.get('error')
         try:
@@ -76,6 +82,7 @@ class SignInView(View):
         })
 
     def post(self, request):
+        """Handle user credentials and perform user authentication and login."""
         form = AuthenticationForm(request, data=request.POST)
         if not form.is_valid():
             messages.error(request, 'Invalid username or password')

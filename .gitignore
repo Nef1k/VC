@@ -3,3 +3,4 @@
 envs/*
 !envs/*.example.env
 
+*.sqlite

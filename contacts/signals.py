@@ -7,5 +7,5 @@ from contacts.models import Contact
 
 @receiver(post_delete, sender=Contact)
 def send_email(sender, instance, **kwargs):
+    """Send email notification each time contact is deleted."""
     send_contact_removal_email(instance)
-    print('Email sent!')

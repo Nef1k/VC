@@ -8,6 +8,8 @@ from users.models import User
 
 
 class Command(BaseCommand):
+    """Generate a user per each existing PermissionGroup."""
+
     @transaction.atomic()
     def handle(self, *args, **options):
         fake = Faker()
