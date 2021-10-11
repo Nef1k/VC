@@ -13,5 +13,5 @@ def send_email(sender, instance, **kwargs):
     """Send email notification each time contact is deleted."""
     try:
         send_contact_removal_email(instance)
-    except SMTPAuthenticationError as e:
+    except Exception as e:
         logging.error(f'Could not send an email: {str(e)}')
