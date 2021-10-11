@@ -24,10 +24,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'drf_yasg',
+    'crispy_forms',
 
     'contacts',
     'users',
     'api',
+    'ui',
 ]
 
 MIDDLEWARE = [
@@ -46,6 +48,8 @@ AUTH_USER_MODEL = 'users.User'
 
 NOTIFICATION_EMAIL = 'nef1k@outlook.com'
 
+LOGIN_URL = 'sign-in'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -60,10 +64,12 @@ LOGGING = {
     },
 }
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR.parent / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

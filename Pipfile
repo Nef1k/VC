@@ -12,6 +12,7 @@ djangorestframework-simplejwt = "*"
 drf-yasg = "*"
 pyjwt = "~=2.1.0"
 pylama = "*"
+django-crispy-forms = "*"
 
 [dev-packages]
 

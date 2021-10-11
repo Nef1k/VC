@@ -7,7 +7,7 @@ from users.models import User
 
 
 def create_contact(issuer: User, name: str, email: str) -> None:
-    if not issuer.has_perm('add_contact'):
+    if not issuer.has_perm('contacts.add_contact'):
         raise PermissionError
 
     new_contact = Contact(name=name, email=email)
@@ -15,7 +15,7 @@ def create_contact(issuer: User, name: str, email: str) -> None:
 
 
 def update_contact(issuer: User, contact_id: int, name: str, email: str) -> None:
-    if not issuer.has_perm('change_contact'):
+    if not issuer.has_perm('contacts.change_contact'):
         raise PermissionError
 
     contact = Contact.objects.get(contact_id)
@@ -25,21 +25,21 @@ def update_contact(issuer: User, contact_id: int, name: str, email: str) -> None
 
 
 def get_contact(issuer: User, contact_id: int) -> Contact:
-    if not issuer.has_perm('view_contact'):
+    if not issuer.has_perm('contacts.view_contact'):
         raise PermissionError
 
     return Contact.objects.get(pk=contact_id)
 
 
 def get_contacts(issuer: User) -> QuerySet:
-    if not issuer.has_perm('view_contacts'):
+    if not issuer.has_perm('contacts.view_contact'):
         raise PermissionError
 
-    return Contact.objects.all()
+    return Contact.objects.order_by('-id')
 
 
 def delete_contact(issuer: User, contact_id: int) -> None:
-    if not issuer.has_perm('delete_contact'):
+    if not issuer.has_perm('contacts.delete_contact'):
         raise PermissionError
 
     contact = Contact.objects.get(pk=contact_id)

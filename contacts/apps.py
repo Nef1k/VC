@@ -6,4 +6,4 @@ class ContactsConfig(AppConfig):
     name = 'contacts'
 
     def ready(self):
-        from contacts import signals  # no qa
+        from contacts import signals  # noqa

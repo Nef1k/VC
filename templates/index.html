@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Contacts{% endblock %}
+
+{% block content %}
+    <div class="col-12 d-flex justify-content-between align-items-center">
+        <span>Hi, {{ user.username }}</span>
+        <div class="btn-group" role="group">
+            {% if can_add %}
+                <a class="btn btn-outline-primary btn-sm" href="{% url 'contact-add' %}">New contacts</a>
+            {% endif %}
+            <a class="btn btn-outline-secondary btn-sm" href="{% url 'logout' %}">Sign out</a>
+        </div>
+    </div>
+    <div class="col-12 mt-4">
+        <ul class="list-group">
+            {% for contact in contacts %}
+                <li class="list-group-item d-flex align-items-center">
+                    <div class="flex-grow-1">
+                        <p class="mb-1">{{ contact.name }}</p>
+                        <small>{{ contact.email }}</small>
+                    </div>
+                    {% if can_delete %}
+                        <div>
+                            <form action="{% url 'contact-delete' pk=contact.id %}" method="post">
+                                {% csrf_token %}
+                                <button class="btn btn-sm btn-outline-danger" type="submit">
+                                    <i class="bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    {% endif %}
+                </li>
+            {% empty %}
+                <li class="list-group-item">No contacts so far. Try to add one!</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
