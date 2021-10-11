@@ -26,6 +26,9 @@ run:
 zip:
 	git archive --format zip --output $(shell pwd)/contacts.zip master
 
+smtp:
+	python -m smtpd -n -c DebuggingServer localhost:2500
+
 init_no_deps: migrate seed_users seed_contacts test
 
 init: deps init_no_deps
